@@ -39,8 +39,13 @@ Pygame 2.0.1
 ☐ Níveis (Mapa em si)
 
 # Integrantes
+
   • Jorge Jorge Márcio Lopes Costa
+  
   • Otávio Henrique Ribas Guimarães
+  
   • Gabriel Tostes Messias Pereira
+  
   • Mateus Nobre Santos
+  
   • Lucas Inamine de Angelo
