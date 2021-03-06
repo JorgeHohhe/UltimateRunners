@@ -51,3 +51,23 @@ Pygame 2.0.1
   • Mateus Nobre Santos
   
   • Lucas Inamine de Angelo
+
+  # Git Workflow
+
+
+
+  Para começar:
+  ´´´
+  git pull
+  git checkout -b my_new_branch
+
+  ´´´
+
+No dia-a-dia:
+
+
+´´´
+git status
+git add file_name
+git commit -m 'some message'
+git push origin my_new_branch
