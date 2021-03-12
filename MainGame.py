@@ -51,7 +51,7 @@ class Cube:
         if self.rot == 5:
             self.rot = 1
             self.tilt = 0
-    
+
     def jumpYS(self):
 
         self.vel = -20
@@ -61,7 +61,7 @@ class Cube:
         if self.rot == 5:
             self.rot = 1
             self.tilt = 0
-           
+
     def move(self, blocks):
         # CUBE PHYSICS
         self.vel += 0.8
@@ -165,7 +165,7 @@ class Spike:
             return True
 
         return False
-    
+
 class YellowSpring:
 
     def __init__(self, x, y):
@@ -264,7 +264,7 @@ def main():
         remove_spikes = list()  # LOOK IF IS NECESSARY
         remove_blocks = list()  # LOOK IF IS NECESSARY
         remove_ysprings = list()  # LOOK IF IS NECESSARY
-        
+
         # SPIKES
         for spike in spikes:
             # SPIKE COLLISION TEST
@@ -289,7 +289,7 @@ def main():
                 remove_blocks.append(block)
 
             block.move()
-            
+
         for spring in ysprings:
             # SPRING COLLISION TEST
             if spring.collision(cube):
