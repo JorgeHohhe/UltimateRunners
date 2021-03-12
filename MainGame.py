@@ -10,6 +10,7 @@ WIN_HEIGHT = 680
 CUBE = pygame.transform.scale(pygame.image.load(os.path.join("images", "cube.png")), (75, 75))
 BLOCK = pygame.transform.scale(pygame.image.load(os.path.join("images", "block.png")), (75, 75))
 SPIKE = pygame.transform.scale(pygame.image.load(os.path.join("images", "spike.png")), (50, 50))
+LAVA = pygame.transform.scale(pygame.image.load(os.path.join("images", "lava.png")), (125, 25))
 BG = pygame.image.load(os.path.join("images", "bg1.jpg"))
 BASE = pygame.transform.scale2x(pygame.image.load(os.path.join("images", "base.png")))
 SIDE = pygame.transform.scale(pygame.image.load(os.path.join("images", "SideBlock.png")), (436, 20))
@@ -182,14 +183,39 @@ class Block:
 
         return False
 
+class Lava:
 
-def draw_game(win, cube, background, spikes, blocks, base):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.img = LAVA
+
+    def move(self):
+        self.x -= VEL
+
+    def draw(self, win):
+        win.blit(self.img, (self.x, self.y))
+
+    def collision(self, cube):
+        cube_mask = cube.get_mask()
+        lava_mask = pygame.mask.from_surface(self.img)
+        offset = (round(self.x - cube.x), round(self.y - cube.y))
+        point = cube_mask.overlap(lava_mask, offset)
+
+        if point:
+            return True
+
+        return False
+
+def draw_game(win, cube, background, spikes, blocks, base, lavas):
     background.draw(win)
     cube.draw(win)
     for spike in spikes:
         spike.draw(win)
     for block in blocks:
         block.draw(win)
+    for lava in lavas:
+        lava.draw(win)
     base.draw(win)
 
     # DRAW TEST
@@ -204,6 +230,7 @@ def main():
     background = Bg(0)
     spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height())]
     blocks = [Block(1200, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height())]
+    lavas = [Lava(1800 , WIN_HEIGHT - BASE.get_height() - LAVA.get_height()/2)]
     cube = Cube(200, 200)
 
     timer = pygame.time.Clock()
@@ -225,6 +252,7 @@ def main():
         base.move()
         remove_spikes = list()  # LOOK IF IS NECESSARY
         remove_blocks = list()  # LOOK IF IS NECESSARY
+        remove_lavas = list()   # LOOK IF IS NECESSARY
         # SPIKES
         for spike in spikes:
             # SPIKE COLLISION TEST
@@ -249,20 +277,35 @@ def main():
                 remove_blocks.append(block)
 
             block.move()
+        # LAVA
+        for lava in lavas:
+            # LAVA COLLISION TEST
+            if lava.collision(cube):
+                # restart the game
+                main()
+            # BLOCK COLLISION TEST
+
+            if lava.x + lava.img.get_width() < 0:
+                remove_lavas.append(lava)
+
+            lava.move()
 
         # MAP SETUP
         while (len(spikes) + len(blocks)) <= 1:
             blocks.append(Block(800, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
             blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
             blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height() - 75))
+            lavas.append(Lava(1450, WIN_HEIGHT -BASE.get_height() - LAVA.get_height()/2))
 
         # REMOVE OBJECTS THAT ALREADY PASSED
         for r in remove_spikes:
             spikes.remove(r)
         for r in remove_blocks:
             blocks.remove(r)
+        for r in remove_lavas:
+            lavas.remove(r)
 
-        draw_game(win, cube, background, spikes, blocks, base)
+        draw_game(win, cube, background, spikes, blocks, base, lavas)
 
 
 if __name__ == '__main__':
