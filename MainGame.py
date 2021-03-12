@@ -7,6 +7,7 @@ VEL = 8
 
 WIN_WIDTH = 800
 WIN_HEIGHT = 680
+YSPRING = pygame.transform.scale(pygame.image.load(os.path.join("images", "YellowSpring.png")), (75, 5))
 CUBE = pygame.transform.scale(pygame.image.load(os.path.join("images", "cube.png")), (75, 75))
 BLOCK = pygame.transform.scale(pygame.image.load(os.path.join("images", "block.png")), (75, 75))
 SPIKE = pygame.transform.scale(pygame.image.load(os.path.join("images", "spike.png")), (50, 50))
@@ -50,7 +51,17 @@ class Cube:
         if self.rot == 5:
             self.rot = 1
             self.tilt = 0
+    
+    def jumpYS(self):
 
+        self.vel = -20
+        self.tick = 0
+
+        self.rot += 1
+        if self.rot == 5:
+            self.rot = 1
+            self.tilt = 0
+           
     def move(self, blocks):
         # CUBE PHYSICS
         self.vel += 0.8
@@ -154,6 +165,30 @@ class Spike:
             return True
 
         return False
+    
+class YellowSpring:
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.img = YSPRING
+
+    def move(self):
+        self.x -= VEL
+
+    def draw(self, win):
+        win.blit(self.img, (self.x, self.y))
+
+    def collision(self, cube):
+        cube_mask = cube.get_mask()
+        spike_mask = pygame.mask.from_surface(self.img)
+        offset = (round(self.x - cube.x), round(self.y - cube.y))
+        point = cube_mask.overlap(spike_mask, offset)
+
+        if point:
+            return True
+
+        return False
 
 
 class Block:
@@ -183,13 +218,15 @@ class Block:
         return False
 
 
-def draw_game(win, cube, background, spikes, blocks, base):
+def draw_game(win, cube, background, spikes, blocks, ysprings, base):
     background.draw(win)
     cube.draw(win)
     for spike in spikes:
         spike.draw(win)
     for block in blocks:
         block.draw(win)
+    for spring in ysprings:
+        spring.draw(win)
     base.draw(win)
 
     # DRAW TEST
@@ -204,6 +241,7 @@ def main():
     background = Bg(0)
     spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height())]
     blocks = [Block(1200, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height())]
+    ysprings = [YellowSpring(700, WIN_HEIGHT - BASE.get_height() - YSPRING.get_height())]
     cube = Cube(200, 200)
 
     timer = pygame.time.Clock()
@@ -225,6 +263,8 @@ def main():
         base.move()
         remove_spikes = list()  # LOOK IF IS NECESSARY
         remove_blocks = list()  # LOOK IF IS NECESSARY
+        remove_ysprings = list()  # LOOK IF IS NECESSARY
+        
         # SPIKES
         for spike in spikes:
             # SPIKE COLLISION TEST
@@ -249,20 +289,35 @@ def main():
                 remove_blocks.append(block)
 
             block.move()
+            
+        for spring in ysprings:
+            # SPRING COLLISION TEST
+            if spring.collision(cube):
+                # restart the game
+                cube.jumpYS()
+            # BLOCK COLLISION TEST
+
+            if block.x + block.img.get_width() < 0:
+                remove_ysprings.append(ysprings)
+
+            spring.move()
 
         # MAP SETUP
         while (len(spikes) + len(blocks)) <= 1:
-            blocks.append(Block(800, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
-            blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
-            blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height() - 75))
+            blocks.append(Block(900, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
+            blocks.append(Block(1150, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height()))
+            blocks.append(Block(1150, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height() - 75))
+            ysprings.append(YellowSpring(800, WIN_HEIGHT - BASE.get_height() - YSPRING.get_height()))
 
         # REMOVE OBJECTS THAT ALREADY PASSED
         for r in remove_spikes:
             spikes.remove(r)
         for r in remove_blocks:
             blocks.remove(r)
+        for r in remove_ysprings:
+            ysprings.remove(r)
 
-        draw_game(win, cube, background, spikes, blocks, base)
+        draw_game(win, cube, background, spikes, blocks, ysprings, base)
 
 
 if __name__ == '__main__':
