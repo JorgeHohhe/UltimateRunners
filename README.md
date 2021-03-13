@@ -10,39 +10,55 @@ Pygame 2.0.1
 
 ### Personagens
 
-✅ Cubo
+✅ Cubo (Semana 1)
 
-☐ Dragão
+☑ Dragão
 
-☐ Orbe
+☑ Orbe
 
-☐ Laser
+☑ Laser
+
+☑ Ciclope
 
 ### Componentes
 
-✅ Espinho
+✅ Espinho (Semana 1)
 
-✅ Bloco
+✅ Bloco (Semana 1)
 
-☐ Mola Amarela
+☑ Mola Amarela
 
-☐ Mola de Gravidade
+☑ Mola de Gravidade
 
-☐ Lava
+☑ Lava
 
 ☐ Obstáculos Móveis
 
+☐ Globo Amarelo
+
+☐ Globo de Gravidade
+
 ### Outros
 
-☐ Música de Fundo
+☐ Música de Fundo e Som ao perder
+
+☐ Efeitos (Brilho da tela, Partículas)
 
 ☐ Menu do Jogo
 
 ☐ Níveis (Mapa em si)
 
+### Legenda
+
+✅ Feito e já implementado
+
+☑ Feito, mas não implementado
+
+☐ Não feito
+
 # Integrantes
 
-  • Jorge Jorge Márcio Lopes Costa
+  • Jorge Márcio Lopes Costa
   
   • Otávio Henrique Ribas Guimarães
   
@@ -52,22 +68,26 @@ Pygame 2.0.1
   
   • Lucas Inamine de Angelo
 
-  # Git Workflow
-
-
+# Git Workflow
 
   Para começar:
+  
   ´´´
+  
   git pull
+  
   git checkout -b my_new_branch
 
   ´´´
 
 No dia-a-dia:
 
-
 ´´´
+
 git status
+
 git add file_name
+
 git commit -m 'some message'
+
 git push origin my_new_branch
