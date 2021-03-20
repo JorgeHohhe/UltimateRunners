@@ -29,6 +29,7 @@ def main():
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     timer = pygame.time.Clock()
     flag = True
+    pressed = False
     while flag:
         timer.tick(60)
         for event in pygame.event.get():
@@ -37,11 +38,22 @@ def main():
                 pygame.quit()
                 quit()
             # JUMP TEST WITH SPACE-BAR
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and env.cube.could_jump(env.blocks):
-                env.cube.jump()
+            #if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and env.cube.could_jump(env.blocks):
+            #    env.cube.jump()
+            # JUMP TEST WITH SPACE-BAR
+            state = pygame.key.get_pressed()
+            if state[pygame.K_SPACE]:
+#                env.cube.up()
+                if not pressed:
+                    pressed = True
+                    if env.cube.could_switch():
+                        env.cube.switch()
+            else:
+                pressed = False       
 
         # TEST WHO IS THE NEXT BLOCK
-        env.cube.move(env.blocks)
+        #env.cube.move(env.blocks)
+        env.cube.move()
         env.background.move()
         env.base.move()
         remove_spikes = list()  # LOOK IF IS NECESSARY

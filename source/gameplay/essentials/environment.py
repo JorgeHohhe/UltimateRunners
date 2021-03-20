@@ -2,6 +2,10 @@ from ..components.transporters.springs.gravity_spring import Grav_Spring
 from ..components.platforms.block import Block
 from ..components.hazards.spike import Spike
 from ..characters.cube import Cube
+from ..characters.laser import Laser
+from ..characters.orb import Orb
+from ..characters.dragon import Dragon
+from ..characters.cyclops import Cyclops
 from .base import Base
 from .background import Bg
 from ..utils.constants import *
@@ -13,10 +17,10 @@ class Environment:
         self.base = Base(WIN_HEIGHT - BASE.get_height())
         self.top = Base(BASE.get_height())
         self.background = Bg(0)
-        #self.spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height(), 0)]
+        self.spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height(), 0)]
         self.blocks = [Block(1200, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height(), 0)]
         self.spikes = [Grav_Spring(800, WIN_HEIGHT - BASE.get_height() - GRAV_SPRING.get_height(), 0)]
-        self.cube = Cube(200, 200)
+        self.cube = Cyclops(200, 0)
 
 
     def map_setup(self):

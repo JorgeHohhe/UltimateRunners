@@ -3,14 +3,12 @@ from ..utils.constants import *
 
 class Character:
 
-    def __init__(self, x, y, img, g, rot_vel):
-        self.x = x
+    def __init__(self, y, vel, img, rot, g, rot_vel):
+        self.x = INITIAL_X
         self.y = y
-        self.tilt = 0
-        self.tick = 0
-        self.vel = 0
+        self.vel = vel
         self.img = img
-        self.rot = 0
+        self.rot = rot
         self.grav = g
         self.rot_vel = rot_vel
 

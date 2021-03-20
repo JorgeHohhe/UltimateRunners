@@ -5,8 +5,10 @@ from ..utils.constants import *
 
 class Cube(Character):
 
-    def __init__(self, x, y):
-        super().__init__(x, y, CUBE, CUBE_GRAV, CUBE_ROTATION_VEL)
+    def __init__(self, y, vel):
+        super().__init__(y, vel, CUBE, CUBE_GRAV, CUBE_ROTATION_VEL)
+        self.tilt = 0
+        self.height = img.get_height()
 
     def could_jump(self, blocks):
 
@@ -24,10 +26,8 @@ class Cube(Character):
     def jump(self):
         if self.grav > 0:
             self.vel = -15
-            self.tick = 0
         else:
             self.vel = 15
-            self.tick = 0
 
         self.rot += 1
         if self.rot == 5:
@@ -38,7 +38,6 @@ class Cube(Character):
         # CUBE PHYSICS
         self.vel += self.grav
         self.y += self.vel
-        self.tick += 1
 
         # CUBE AND BASE INTERACTION
         if self.y > WIN_HEIGHT - BASE.get_height() - self.img.get_height() + 5:
