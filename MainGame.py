@@ -4,18 +4,21 @@ from source.graphics.images_loader import *
 from source.graphics.misc.font import *
 from source.gameplay.utils.constants import *
 from source.gameplay.components.platforms import block
+from source.gameplay.components.platforms import mobile
 from source.gameplay.essentials.environment import Environment
 
 # TEST = pygame.transform.scale(pygame.image.load(os.path.join("images", "Wave34.png")), (47, 75))  # Change Scale
 
 
-def draw_game(win, cube, background, spikes, blocks, base, top):
+def draw_game(win, cube, background, spikes, blocks, mobiles, base, top):
     background.draw(win)
     cube.draw(win)
     for spike in spikes:
         spike.draw(win)
     for block in blocks:
         block.draw(win)
+    for mobile in mobiles:
+        mobile.draw(win)
     base.draw(win)
 
     # DRAW TEST
@@ -42,15 +45,16 @@ def main():
 
         # TEST WHO IS THE NEXT BLOCK
         env.cube.move(env.blocks)
+        env.cube.move(env.mobiles)
         env.background.move()
         env.base.move()
         remove_spikes = list()  # LOOK IF IS NECESSARY
         remove_blocks = list()  # LOOK IF IS NECESSARY
+        remove_mobiles = list()  # LOOK IF IS NECESSARY
         # SPIKES
         for spike in env.spikes:
             # SPIKE COLLISION TEST
             if spike.collision(env.cube):
-                print("blau")
                 # restart the game
                 main()
             # SPIKE COLLISION TEST
@@ -71,9 +75,22 @@ def main():
                 remove_blocks.append(block)
 
             block.move()
+        
+        # MOBILES 
+        for mobile in env.mobiles:
+            # MOBILE COLLISION TEST
+            if mobile.collision(env.cube):
+                # restart the game
+                main()
+            # MOBILE COLLISION TEST
+
+            if (mobile.x + mobile.img.get_width() < 0):
+                remove_mobiles.append(mobile)
+
+            mobile.move()
 
         # MAP SETUP
-        while (len(env.spikes) + len(env.blocks)) <= 1:
+        while (len(env.spikes) + len(env.blocks) + len(env.mobiles)) <= 1:
             env.map_setup()
 
         # REMOVE OBJECTS THAT ALREADY PASSED
@@ -81,8 +98,10 @@ def main():
             env.spikes.remove(r)
         for r in remove_blocks:
             env.blocks.remove(r)
+        for r in remove_mobiles:
+            env.mobiles.remove(r)
 
-        draw_game(win, env.cube, env.background, env.spikes, env.blocks, env.base, env.top)
+        draw_game(win, env.cube, env.background, env.spikes, env.blocks, env.mobiles, env.base, env.top)
 
 
 if __name__ == '__main__':
