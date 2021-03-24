@@ -26,11 +26,11 @@ Pygame 2.0.1
 
 ✅ Bloco
 
-☑ Mola Amarela
+✅ Mola Amarela
 
 ✅ Mola de Gravidade
 
-☑ Lava
+✅ Lava
 
 ☐ Obstáculos Móveis
 
@@ -40,9 +40,9 @@ Pygame 2.0.1
 
 ### Outros
 
-☐ Música de Fundo e Som ao perder
+☐ Música de Fundo
 
-☐ Barra de Progresso
+✅ Efeito e Som ao perder
 
 ☐ Efeitos (Brilho da tela, Partículas)
 

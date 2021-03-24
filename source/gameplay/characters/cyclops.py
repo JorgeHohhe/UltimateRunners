@@ -32,20 +32,20 @@ class Cyclops(Character):
         self.vel += self.grav
         self.y += self.vel
 
-        # ORB AND BASE INTERACTION
+        # CYCLOPS AND BASE INTERACTION
         if self.y > WIN_HEIGHT - BASE.get_height() - self.height:
             self.y = WIN_HEIGHT - BASE.get_height() - self.height
             self.vel = 0
         
-        # ORB AND TOP INTERACTION
+        # CYCLOPS AND TOP INTERACTION
         if self.y < - BASE.get_height() / 2 + self.height * 3 / 4:
             self.y = - BASE.get_height() / 2 + self.height * 3 / 4
             self.vel = 0    
             
-        # CUBE ROTATION AFTER JUMP
+        # CYCLOPS ANIMATION
         self.rot += 0.5
         if self.rot == 7:
-            self.rot=0
+            self.rot = 0
 
     def draw(self, win):
         rotated_image = pygame.transform.flip(self.img[int(self.rot)], False, self.flip)
