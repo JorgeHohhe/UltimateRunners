@@ -1,6 +1,8 @@
 from ..components.transporters.springs.gravity_spring import GravSpring
+from ..components.transporters.springs.yellow_spring import YellowSpring
 from ..components.platforms.block import Block
 from ..components.hazards.spike import Spike
+from ..components.hazards.lava import Lava
 from ..components.portals.portal import Portal
 from ..characters.cube import Cube
 from ..characters.laser import Laser
@@ -10,7 +12,7 @@ from ..characters.cyclops import Cyclops
 from .base import Base
 from .background import Bg
 from ..utils.constants import *
-from ...graphics.images_loader import BASE, GRAV_SPRING
+from ...graphics.images_loader import BASE, GRAV_SPRING, LAVA, YELLOW_SPRING
 
 
 class Environment:
@@ -29,7 +31,7 @@ class Environment:
         # READING THE LEVEL SETUP IN A TXT FILE
         input_file = open(r"Map1.txt", "r")
         f = input_file.readline().split()
-        self.gamemode = f[0]
+        gamemode = f[0]
 
         f = input_file.readline().split()
         while f[0] != "end":
@@ -39,9 +41,15 @@ class Environment:
             elif f[0] == "block":
                 f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
                 self.blocks.append(Block(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
+            elif f[0] == "yellowspring":
+                f[2] = WIN_HEIGHT - BASE.get_height() - YELLOW_SPRING.get_height() - int(f[2])
+                all_comp.append(YellowSpring(int(f[1]), f[2], int(f[3])))
             elif f[0] == "gravspring":
                 f[2] = WIN_HEIGHT - BASE.get_height() - GRAV_SPRING.get_height() - int(f[2])
                 all_comp.append(GravSpring(int(f[1]), f[2], int(f[3])))
+            elif f[0] == "lava":
+                f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
+                all_comp.append(Lava(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
             elif f[0] == "laserportal":
                 f[2] = WIN_HEIGHT - BASE.get_height() - PORTAL_HEIGHT - int(f[2])
                 laser_portal.append(Portal(int(f[1]), f[2], 0, 1))
@@ -90,16 +98,21 @@ class Environment:
         }
 
         # SET GAMEMODES
-        if self.gamemode == "cube":
+        if gamemode == "cube":
             self.player = Cube(500, 0)
-        elif self.gamemode == "laser":
+            self.player.gamemode = "cube"
+        elif gamemode == "laser":
             self.player = Laser(500)
-        elif self.gamemode == "orb":
+            self.player.gamemode = "laser"
+        elif gamemode == "orb":
             self.player = Orb(500, 0)
-        elif self.gamemode == "dragon":
+            self.player.gamemode = "orb"
+        elif gamemode == "dragon":
             self.player = Dragon(500, 0)
-        elif self.gamemode == "cyclops":
+            self.player.gamemode = "dragon"
+        elif gamemode == "cyclops":
             self.player = Cyclops(500, 0)
+            self.player.gamemode = "cyclops"
 
     def portals_test(self):
         for key, portal in self.portals.items():
@@ -108,16 +121,16 @@ class Environment:
                     portal[i].passed = True
                     if key == "laser_portal":
                         self.player = Laser(self.player.y)
-                        self.gamemode = "laser"
+                        self.player.gamemode = "laser"
                     elif key == "cube_portal":
                         self.player = Cube(self.player.y, 0)
-                        self.gamemode = "cube"
+                        self.player.gamemode = "cube"
                     elif key == "orb_portal":
                         self.player = Orb(self.player.y, 0)
-                        self.gamemode = "orb"
+                        self.player.gamemode = "orb"
                     elif key == "dragon_portal":
                         self.player = Dragon(self.player.y, 0)
-                        self.gamemode = "dragon"
+                        self.player.gamemode = "dragon"
                     elif key == "cyclops_portal":
                         self.player = Cyclops(self.player.y, 0)
-                        self.gamemode = "cyclops"
+                        self.player.gamemode = "cyclops"

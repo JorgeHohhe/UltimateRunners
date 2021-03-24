@@ -9,13 +9,13 @@ class GravSpring(Component):
         super().__init__(x, y, angle, GRAV_SPRING)
         self.activated = False
 
-    def collision(self, cube):
-        cube_mask = cube.get_mask()
+    def collision(self, player):
+        cube_mask = player.get_mask()
         gspring_mask = pygame.mask.from_surface(self.img)
-        offset = (round(self.x - cube.x), round(self.y - cube.y))
+        offset = (round(self.x - player.x), round(self.y - player.y))
         point = cube_mask.overlap(gspring_mask, offset)
 
         if point and not self.activated:        
-            cube.change_velocity(-cube.get_velocity())
-            cube.change_gravity(-cube.get_gravity())
+            player.change_velocity(-player.get_velocity())
+            player.change_gravity(-player.get_gravity())
             self.activated = True

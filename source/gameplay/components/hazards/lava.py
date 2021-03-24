@@ -1,12 +1,12 @@
 import pygame
-from ....graphics.images_loader import SPIKE
+from ....graphics.images_loader import LAVA
 from ..component_class import Component
 
 
-class Spike(Component):
+class Lava(Component):
 
     def __init__(self, x, y, angle, pixels_x, pixels_y):
-        super().__init__(x, y, angle, SPIKE)
+        super().__init__(x, y, angle, LAVA)
         self.img = pygame.transform.scale(self.img, (pixels_x, pixels_y))
 
     def collision(self, player):
