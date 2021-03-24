@@ -10,25 +10,25 @@ Pygame 2.0.1
 
 ### Personagens
 
-✅ Cubo (Semana 1)
+✅ Cubo
 
-☑ Dragão
+✅ Dragão
 
-☑ Orbe
+✅ Orbe
 
-☑ Laser
+✅ Laser
 
-☑ Ciclope
+✅ Ciclope
 
 ### Componentes
 
-✅ Espinho (Semana 1)
+✅ Espinho
 
-✅ Bloco (Semana 1)
+✅ Bloco
 
 ☑ Mola Amarela
 
-☑ Mola de Gravidade
+✅ Mola de Gravidade
 
 ☑ Lava
 
@@ -41,6 +41,8 @@ Pygame 2.0.1
 ### Outros
 
 ☐ Música de Fundo e Som ao perder
+
+☐ Barra de Progresso
 
 ☐ Efeitos (Brilho da tela, Partículas)
 
