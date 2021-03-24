@@ -1,8 +1,9 @@
 import pygame
 from .....graphics.images_loader import GRAV_SPRING
-from ...component_class import component
+from ...component_class import Component
 
-class Grav_Spring(component):
+
+class GravSpring(Component):
 
     def __init__(self, x, y, angle):
         super().__init__(x, y, angle, GRAV_SPRING)

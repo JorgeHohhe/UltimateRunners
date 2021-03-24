@@ -1,14 +1,13 @@
 import pygame
 from ....graphics.images_loader import BLOCK, SIDE
-from ..component_class import component
+from ..component_class import Component
 
-class Block(component):
 
-    def __init__(self, x, y, angle):
-        self.x = x
-        self.y = y
-        self.angle = angle
-        self.img = BLOCK
+class Block(Component):
+
+    def __init__(self, x, y, angle, pixels_x, pixels_y):
+        super().__init__(x, y, angle, BLOCK)
+        self.img = pygame.transform.scale(self.img, (pixels_x, pixels_y))
         self.side_img1 = pygame.transform.rotate(SIDE, 90)
 
     def draw(self, win):
