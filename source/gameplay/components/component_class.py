@@ -1,7 +1,8 @@
 import pygame
 from ..utils.constants import VEL
 
-class component:
+
+class Component:
 
     def __init__(self, x, y, angle, img):
         self.x = x
@@ -15,3 +16,7 @@ class component:
     def draw(self, win):
         draw_img = pygame.transform.rotate(self.img, self.angle)
         win.blit(draw_img, (self.x, self.y))
+
+    def collision(self, cube):
+        # PERHAPS USE AFTER
+        pass

@@ -1,11 +1,13 @@
 import pygame
 from ....graphics.images_loader import SPIKE
-from ..component_class import component
+from ..component_class import Component
 
-class Spike(component):
 
-    def __init__(self, x, y, angle):
+class Spike(Component):
+
+    def __init__(self, x, y, angle, pixels_x, pixels_y):
         super().__init__(x, y, angle, SPIKE)
+        self.img = pygame.transform.scale(self.img, (pixels_x, pixels_y))
 
     def collision(self, cube):
         cube_mask = cube.get_mask()
