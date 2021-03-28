@@ -9,6 +9,7 @@ SIDE = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/im
 GRAV_SPRING = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "GravitySpring.png")), (50, 11))
 LAVA = pygame.image.load(os.path.join("source/graphics/images", "lava.png"))
 YELLOW_SPRING = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "YellowSpring.png")), (50, 11))
+YELLOW_GLOBE = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "YellowGlobe.png")), (40, 40))
 
 PLAYER_EXPLOSION_FRAME_0 = pygame.image.load(os.path.join("source/graphics/images/PlayerExplosion", "PlayerExplosion0.png"))
 PLAYER_EXPLOSION_FRAME_1 = pygame.image.load(os.path.join("source/graphics/images/PlayerExplosion", "PlayerExplosion1.png"))

@@ -5,7 +5,7 @@ yellowspring 1700 0 0
 yellowspring 2000 75 0
 yellowspring 2400 75 0
 yellowspring 2800 75 0
-yellowspring 3200 75 0
+yellowglobe 3200 75 0
 lava 3000 0 1000 25
 spike 3500 0 75 75
 block 3580 0 75 75
