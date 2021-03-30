@@ -25,13 +25,13 @@ class Laser(Character):
         # LASER PHYSICS
         self.y += self.vel
 
-        # LASER AND BASE INTERACTION
+        # LASER AND BASES INTERACTION
         if self.y > WIN_HEIGHT - BASE.get_height() - self.height * 3 / 4:
             self.y = WIN_HEIGHT - BASE.get_height() - self.height * 3 / 4
             self.vel = 0
             self.rot = -90
-        elif self.y < BASE.get_height() - self.height * 3 / 4:
-            self.y = BASE.get_height() - self.height * 3 / 4
+        elif self.y < - BASE.get_height() / 2 + self.height * 2 / 4:
+            self.y = - BASE.get_height() / 2 + self.height * 2 / 4
             self.vel = 0
             self.rot = -90
 

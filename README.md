@@ -34,17 +34,17 @@ Pygame 2.0.1
 
 ☐ Obstáculos Móveis
 
-☐ Globo Amarelo
+✅ Globo Amarelo
 
 ☐ Globo de Gravidade
 
 ### Outros
 
-☐ Música de Fundo
+☑ Música de Fundo (melhorar Menu)
 
 ✅ Efeito e Som ao perder
 
-☐ Efeitos (Brilho da tela, Partículas)
+☐ Efeito de Fim do Nível
 
 ☐ Menu do Jogo
 

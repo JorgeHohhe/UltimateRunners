@@ -1,0 +1,98 @@
+cube
+spike 800 0 25 25 0
+spike 1200 0 50 50 0
+spike 1600 0 75 75 0
+spike 2000 0 100 100 0
+dragonportal 2250 0
+block 2800 0 240 225 
+block 2800 375 240 225
+lava 2800 360 240 15 180
+lava 2800 225 240 15 0
+block 3600 0 280 325 
+block 3600 475 280 300
+lava 3600 460 280 15 180
+lava 3600 325 280 15 0
+laserportal 4300 150
+block 4300 0 75 150
+block 4300 300 75 375
+spike 4700 220 333 200 180
+spike 5000 220 333 200 180
+spike 5300 220 333 200 180
+spike 5600 220 333 200 180
+spike 4850 0 333 200 0
+spike 5150 0 333 200 0
+spike 5450 0 333 200 0
+block 4700 420 25 200
+cyclopsportal 5850 150
+block 5850 0 150 150
+block 6300 515 400 75
+block 6400 0 300 75
+block 6500 440 200 75
+block 6600 75 100 75
+gravspring 6850 0 0
+block 7300 0 400 75
+block 7400 515 300 75
+block 7500 75 200 75
+block 7600 440 100 75
+block 8200 75 25 550
+block 8400 0 25 515
+block 8800 75 25 550
+block 9000 0 25 515
+block 9400 75 25 550
+block 9600 0 25 515
+cubeportal 9650 440
+yellowglobe 10500 100 0
+lava 10320 0 380 25 0
+yellowglobe 11400 100
+lava 11220 0 380 25 0
+yellowglobe 12200 100
+lava 12000 0 500 25 0
+yellowglobe 12400 200
+gravspring 13000 0 0
+spike 13150 0 150 150 0
+yellowglobe 13500 450
+lava 13320 575 380 25 180
+yellowglobe 14150 450
+lava 13970 575 380 25 180
+yellowglobe 15050 450
+lava 14870 575 380 25 180
+laserportal 15250 440
+block 15620 75 25 550
+gravspring 15620 0 0
+spike 15750 220 333 200 180
+spike 16050 220 333 200 180
+spike 16350 220 333 200 180
+spike 15900 0 333 200 0
+spike 16200 0 333 200 0
+spike 16500 0 333 200 0
+orbportal 16850 0
+block 16850 150 75 500
+block 16850 150 2000 75
+spike 17350 0 50 50 0
+spike 17500 100 50 50 180
+end 30000
+
+yellowglobe 900 75
+yellowglobe 1150 150
+yellowglobe 1350 250
+spike 2300 515 75 75 180 (spike teto)
+
+# Macaco Map Setup
+1º gamemode
+spike x y tamanho_x tamanho_y angle
+block x y tamanho_x tamanho_y
+lava x y tamanho_x tamanho_y angle
+gravspring x y angle
+yellowspring x y angle
+yellowglobe x y
+cubeportal x y
+laserportal x y
+orbportal x y
+dragonportal x y
+cyclopsportal x y
+end x
+
+BASE_BOTTOM: y = 0
+BASE_TOP: Y = 590
+
+

@@ -17,24 +17,18 @@ class Character:
         self.height = self.img.get_height()
         self.width = self.img.get_width()
         self.gamemode = ""
+        self.pressed_space = False
 
         self.i = 0
         self.player_x = 0
         self.player_y = 0
-
-    def blocks_interaction(self, blocks):
-        for block in blocks:
-            if self.x + self.width > block.x and self.x < block.x + block.img.get_width():
-                if self.y + self.height > block.y:
-                    self.y = block.y - self.height
-                    self.vel = 0
 
     def death_effect(self, win):
         if self.i == 0:
             self.player_x = self.x
             self.player_y = self.y
         img_death = pygame.transform.scale(PLAYER_EXPLOSION[self.i], (250, 250))
-        new_rect = img_death.get_rect(center=img_death.get_rect(topleft=(self.player_x - 75/2, self.player_y - 3*75/4)).center)
+        new_rect = img_death.get_rect(center=img_death.get_rect(topleft=(self.player_x - 75, self.player_y - 75)).center)
         win.blit(img_death, new_rect.topleft)
         sleep(0.06)
         self.i += 1
