@@ -1,15 +1,29 @@
-cube
+laser
 gravspring 800 0 0
-gravspring 1275 585 180
+dragonportal 1000 0
+block 1000 150 75 500
+gravspring 1275 590 180
 yellowspring 1700 0 0
 yellowspring 2000 75 0
 yellowspring 2400 75 0
 yellowspring 2800 75 0
 yellowspring 3200 75 0
-lava 3000 0 1000 25
+lava 3000 0 850 25
 spike 3500 0 75 75
 block 3580 0 75 75
-end
+gravspring 800 0 0
+dragonportal 1000 0
+block 1000 150 75 500
+gravspring 1275 590 180
+yellowspring 1700 0 0
+yellowspring 2000 75 0
+yellowspring 2400 75 0
+yellowspring 2800 75 0
+yellowspring 3200 75 0
+lava 3000 0 850 25
+spike 3500 0 75 75
+block 3580 0 75 75
+end 15000
 
 -=-=-=-=-=-=-
 
@@ -27,11 +41,12 @@ orbportal 5000 0
 dragonportal 7000 0
 spike 8000 200 100 100
 lava 9000 0 1000 25
-end
+end 11000
 
 -=-=-=-=-
 
 # Macaco Map Setup
+1º gamemode
 spike x y tamanho_x tamanho_y
 block x y tamanho_x tamanho_y
 gravspring x y angulo
@@ -40,6 +55,7 @@ laserportal x y
 orbportal x y
 dragonportal x y
 cyclopsportal x y
+end x
 
 
 

@@ -8,6 +8,7 @@ class Dragon(Character):
 
     def __init__(self, y, vel):
         super().__init__(y, vel, DRAGON, 0, DRAG_GRAV, DRAG_ROTATION_VEL)
+        self.flip = False
 
     def up(self):
         self.vel += - 2 * self.grav
@@ -38,6 +39,12 @@ class Dragon(Character):
         self.rot = - self.rot_vel * self.vel
 
     def draw(self, win):
-        rotated_image = pygame.transform.rotate(self.img, self.rot)
+        if self.grav > 0:
+            self.flip = False
+        else:
+            self.flip = True
+
+        flipped_image = pygame.transform.flip(self.img, False, self.flip)
+        rotated_image = pygame.transform.rotate(flipped_image, self.rot)
         new_rect = rotated_image.get_rect(center=self.img.get_rect(topleft=(self.x, self.y)).center)
         win.blit(rotated_image, new_rect.topleft)

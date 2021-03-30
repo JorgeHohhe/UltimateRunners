@@ -20,12 +20,13 @@ class Cyclops(Character):
             for block in blocks:
                 if self.y == block.y - self.height:
                     return True
+                elif self.y == block.y + block.img.get_height() - 8:
+                    return True
 
             return False
 
     def switch(self):
         self.grav *= -1
-        self.flip = not self.flip
 
     def move(self):
         # CYCLOPS PHYSICS
@@ -48,9 +49,14 @@ class Cyclops(Character):
             self.rot = 0
 
     def draw(self, win):
-        rotated_image = pygame.transform.flip(self.img[int(self.rot)], False, self.flip)
-        new_rect = rotated_image.get_rect(center=self.img[int(self.rot)].get_rect(topleft=(self.x, self.y)).center)
-        win.blit(rotated_image, new_rect.topleft)
+        if self.grav > 0:
+            self.flip = False
+        else:
+            self.flip = True
+
+        flipped_image = pygame.transform.flip(self.img[int(self.rot)], False, self.flip)
+        new_rect = flipped_image.get_rect(center=self.img[int(self.rot)].get_rect(topleft=(self.x, self.y)).center)
+        win.blit(flipped_image, new_rect.topleft)
         
     def get_mask(self):
         return pygame.mask.from_surface(self.img[0])

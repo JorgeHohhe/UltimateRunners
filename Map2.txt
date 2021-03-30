@@ -1,0 +1,21 @@
+cube
+end 15000
+
+# Macaco Map Setup
+1º gamemode
+spike x y tamanho_x tamanho_y angulo
+block x y tamanho_x tamanho_y
+gravspring x y angulo
+yellowspring x y angulo
+yellowglobe x y
+cubeportal x y
+laserportal x y
+orbportal x y
+dragonportal x y
+cyclopsportal x y
+end x
+
+BASE_BOTTOM: y = 0
+BASE_TOP: Y = 590
+
+

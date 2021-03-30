@@ -19,6 +19,8 @@ class Orb(Character):
             for block in blocks:
                 if self.y == block.y - self.height:
                     return True
+                elif self.y == block.y + block.img.get_height():
+                    return True
 
             return False
 
@@ -30,17 +32,15 @@ class Orb(Character):
         self.vel += self.grav
         self.y += self.vel
 
-        # ORB AND BASE INTERACTION
+        # ORB AND BASES INTERACTION
         if self.y > WIN_HEIGHT - BASE.get_height() - self.height:
             self.y = WIN_HEIGHT - BASE.get_height() - self.height
             self.vel = 0
-        
-        # ORB AND TOP INTERACTION
-        if self.y < - BASE.get_height() / 2 + self.height * 3 / 4:
+        elif self.y < - BASE.get_height() / 2 + self.height * 3 / 4:
             self.y = - BASE.get_height() / 2 + self.height * 3 / 4
             self.vel = 0    
             
-        # CUBE ROTATION AFTER JUMP
+        # ORB ROTATION
         self.rot -= self.rot_vel * self.grav / ORB_GRAV
 
     def draw(self, win):
