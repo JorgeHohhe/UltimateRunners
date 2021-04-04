@@ -51,31 +51,6 @@ class Block(Component):
 
         return False
 
-    def interaction(self, player):
-        player_mask = player.get_mask()
-        block_mask = pygame.mask.from_surface(self.img)
-        offset = (round(self.x - player.x), round(self.y - player.y))
-        point = player_mask.overlap(block_mask, offset)
-
-        if point:
-            player.vel = 0
-            if player.gamemode == 'laser':
-                player.rot = -90
-                if player.y < self.y:
-                    player.y = self.y - player.height * 3 / 4
-                else:
-                    player.y = self.y + self.img.get_height() * 3 / 4
-            else:
-                if player.y < self.y:
-                    player.y = self.y - player.height
-                else:
-                    player.y = self.y + self.img.get_height()
-                    if player.gamemode == "cyclops":
-                        player.y -= 8
-            return True
-
-        return False
-
 class MobileBlock(Block):
 
     def __init__(self, x, y, angle, pixels_x, pixels_y, y_velocity = 10):
