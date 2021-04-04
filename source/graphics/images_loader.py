@@ -5,11 +5,6 @@ BLOCK = pygame.image.load(os.path.join("source/graphics/images", "block.png"))
 SPIKE = pygame.image.load(os.path.join("source/graphics/images", "spike.png"))
 BG = pygame.image.load(os.path.join("source/graphics/images", "bg1.jpg"))
 BASE = pygame.transform.scale2x(pygame.image.load(os.path.join("source/graphics/images", "base.png")))
-<<<<<<< HEAD
-SIDE = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "SideBlock.png")), (436, 20))
-GRAV_SPRING = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "GravitySpring.png")), (50, 12))
-MOBILE_RECTANGLE = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "MobileRectangle.png")), (50,300))
-=======
 SIDE = pygame.image.load(os.path.join("source/graphics/images", "SideBlock.png"))
 GRAV_SPRING = pygame.transform.scale(pygame.image.load(os.path.join("source/graphics/images", "GravitySpring.png")), (50, 11))
 LAVA = pygame.image.load(os.path.join("source/graphics/images", "lava.png"))
@@ -49,4 +44,3 @@ CYCLOPS_PORTAL = pygame.transform.scale(pygame.image.load(os.path.join("source/g
 
 CYCLOPS = [CYCLOPS_FRAME_0, CYCLOPS_FRAME_1, CYCLOPS_FRAME_2, CYCLOPS_FRAME_3, CYCLOPS_FRAME_4, CYCLOPS_FRAME_5, CYCLOPS_FRAME_6]
 PORTALS = [CUBE_PORTAL, LASER_PORTAL, ORB_PORTAL, DRAGON_PORTAL, CYCLOPS_PORTAL]
->>>>>>> 2ac73d3c8af2e121e285e0e89a27bfbf383b14c9
