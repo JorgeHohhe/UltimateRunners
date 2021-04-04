@@ -1,6 +1,7 @@
 from ..components.transporters.springs.gravity_spring import GravSpring
 from ..components.transporters.springs.yellow_spring import YellowSpring
 from ..components.transporters.globes.yellow_globe import YellowGlobe
+from ..components.transporters.globes.gravity_globe import GravityGlobe
 from ..components.platforms.block import Block
 from ..components.hazards.spike import Spike
 from ..components.hazards.lava import Lava
@@ -13,7 +14,7 @@ from ..characters.cyclops import Cyclops
 from .base import Base
 from .background import Bg
 from ..utils.constants import *
-from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_GLOBE
+from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_GLOBE, GRAVITY_GLOBE
 
 
 class Environment:
@@ -48,6 +49,9 @@ class Environment:
             elif f[0] == "yellowglobe":
                 f[2] = WIN_HEIGHT - BASE.get_height() - YELLOW_GLOBE.get_height() - int(f[2])
                 all_comp.append(YellowGlobe(int(f[1]), f[2], 0))
+            elif f[0] == "gravityglobe":
+                f[2] = WIN_HEIGHT - BASE.get_height() - GRAVITY_GLOBE.get_height() - int(f[2])
+                all_comp.append(GravityGlobe(int(f[1]), f[2], 0))             
             elif f[0] == "gravspring":
                 f[2] = WIN_HEIGHT - BASE.get_height() - GRAV_SPRING.get_height() - int(f[2])
                 all_comp.append(GravSpring(int(f[1]), f[2], int(f[3])))
@@ -69,6 +73,7 @@ class Environment:
             elif f[0] == "cyclopsportal":
                 f[2] = WIN_HEIGHT - BASE.get_height() - PORTAL_HEIGHT - int(f[2])
                 cyclops_portal.append(Portal(int(f[1]), f[2], 0, 4))
+
 
             f = input_file.readline().split()
 

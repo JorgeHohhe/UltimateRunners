@@ -7,24 +7,24 @@ pygame.mixer.music.set_volume(0.5)
 
 def play_music_map(level):
     if level == 1:
-        pygame.mixer.music.load("source/audio/sounds/Noisestorm - Barracuda.mp3")
+        pygame.mixer.music.load("source/audio/sounds/Noisestorm - Barracuda.wav")
         pygame.mixer.music.play()
     elif level == 2:
-        pygame.mixer.music.load("source/audio/sounds/Nitro Fun - New Game.mp3")
+        pygame.mixer.music.load("source/audio/sounds/Nitro Fun - New Game.wav")
         pygame.mixer.music.play()
     elif level == 3:
-        pygame.mixer.music.load("source/audio/sounds/Urbanstep - Icebreaker.mp3")
+        pygame.mixer.music.load("source/audio/sounds/Urbanstep - Icebreaker.wav")
         pygame.mixer.music.play()
     elif level == 4:
-        pygame.mixer.music.load("source/audio/sounds/Virtual Riot - Idols.mp3")
+        pygame.mixer.music.load("source/audio/sounds/Virtual Riot - Idols.wav")
         pygame.mixer.music.play()
     elif level == 5:
-        pygame.mixer.music.load("source/audio/sounds/Danimal Cannon - Long Live The New Fresh.mp3")
+        pygame.mixer.music.load("source/audio/sounds/Danimal Cannon - Long Live The New Fresh.wav")
         pygame.mixer.music.play()
 
 
 def death_sound():
-    pygame.mixer.music.load("source/audio/sounds/DeathSoundEffect.mp3")
+    pygame.mixer.music.load("source/audio/sounds/DeathSoundEffect.wav")
     pygame.mixer.music.play()
 
 
