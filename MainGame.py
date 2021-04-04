@@ -31,6 +31,14 @@ def main():
     env = Environment()
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     timer = pygame.time.Clock()
+    death_loop = 0
+    game_paused = False
+
+    # LEVEL MUSIC
+    level_selected = 3
+    #al.play_music_map(level_selected)
+
+    """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
     while flag:
         timer.tick(60)
