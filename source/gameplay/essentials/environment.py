@@ -4,11 +4,18 @@ from ..components.transporters.globes.yellow_globe import YellowGlobe
 from ..components.transporters.globes.gravity_globe import GravityGlobe
 from ..components.platforms.block import Block, MobileBlock
 from ..components.hazards.spike import Spike
+from ..components.hazards.lava import Lava
+from ..components.portals.portal import Portal
 from ..characters.cube import Cube
+from ..characters.laser import Laser
+from ..characters.orb import Orb
+from ..characters.dragon import Dragon
+from ..characters.cyclops import Cyclops
 from .base import Base
 from .background import Bg
 from ..utils.constants import *
-from ...graphics.images_loader import BASE, BLOCK, GRAV_SPRING, MOBILE_RECTANGLE, SPIKE
+from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_GLOBE, GRAVITY_GLOBE
+
 
 class Environment:
     
@@ -79,16 +86,64 @@ class Environment:
         '''self.base = Base(WIN_HEIGHT - BASE.get_height())
         self.top = Base(BASE.get_height())
         self.background = Bg(0)
-        self.spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height(), 0)]
-        self.blocks = [Block(1200, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height(), 0)]
-        self.mobiles = [Mobile(1550, WIN_HEIGHT - BASE.get_height() - MOBILE_RECTANGLE.get_height(), 0)]
+        self.spikes = [Spike(800, WIN_HEIGHT - BASE.get_height() - SPIKE.get_height(), 0, 50, 50)]
+        self.blocks = [Block(1200, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height(), 0, 75, 75)]
         self.spikes = [Grav_Spring(800, WIN_HEIGHT - BASE.get_height() - GRAV_SPRING.get_height(), 0)]
-        self.cube = Cube(200, 200)
+        self.cube = Cyclops(200, 0)'''
 
+        # SET BASE AND BACKGROUND
+        self.base = Base()
+        self.background = Bg(0)
 
-    def map_setup(self):
-        self.blocks.append(Block(800, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height(), 0))
-        self.blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height(), 0))
-        self.blocks.append(Block(1050, WIN_HEIGHT - BASE.get_height() - BLOCK.get_height() - 75, 0))
-        self.mobiles.append(Mobile(3900, WIN_HEIGHT - BASE.get_height() - MOBILE_RECTANGLE.get_height(), 0))
-        self.spikes.append(Grav_Spring(1200, BASE.get_height()- GRAV_SPRING.get_height()-15, 180))
+        # SET COMPONENTS
+        self.components = {
+            "all_comp": all_comp,  # Spikes, GravSpring
+            "blocks": self.blocks,
+        }
+
+        # SET PORTALS
+        self.portals = {
+            "laser_portal": laser_portal,
+            "cube_portal": cube_portal,
+            "orb_portal": orb_portal,
+            "dragon_portal": dragon_portal,
+            "cyclops_portal": cyclops_portal
+        }
+
+        # SET GAMEMODES
+        if gamemode == "cube":
+            self.player = Cube(500, 0)
+            self.player.gamemode = "cube"
+        elif gamemode == "laser":
+            self.player = Laser(500)
+            self.player.gamemode = "laser"
+        elif gamemode == "orb":
+            self.player = Orb(500, 0)
+            self.player.gamemode = "orb"
+        elif gamemode == "dragon":
+            self.player = Dragon(500, 0)
+            self.player.gamemode = "dragon"
+        elif gamemode == "cyclops":
+            self.player = Cyclops(500, 0)
+            self.player.gamemode = "cyclops"
+
+    def portals_test(self):
+        for key, portal in self.portals.items():
+            for i in range(0, len(portal)):
+                if portal[i].x < INITIAL_X and not portal[i].passed:
+                    portal[i].passed = True
+                    if key == "laser_portal":
+                        self.player = Laser(self.player.y)
+                        self.player.gamemode = "laser"
+                    elif key == "cube_portal":
+                        self.player = Cube(self.player.y, 0)
+                        self.player.gamemode = "cube"
+                    elif key == "orb_portal":
+                        self.player = Orb(self.player.y, 0)
+                        self.player.gamemode = "orb"
+                    elif key == "dragon_portal":
+                        self.player = Dragon(self.player.y, 0)
+                        self.player.gamemode = "dragon"
+                    elif key == "cyclops_portal":
+                        self.player = Cyclops(self.player.y, 0)
+                        self.player.gamemode = "cyclops"

@@ -1,6 +1,5 @@
 {
     "files.watcherExclude": {
         "**/target": true
-    },
-    "python.pythonPath": "ultimate_runners/bin/python"
+    }
 }
