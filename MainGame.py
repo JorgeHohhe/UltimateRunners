@@ -5,7 +5,12 @@ from source.gameplay.components.platforms.block import *
 from source.gameplay.essentials.environment import Environment
 import source.audio.audio_loader as al
 from time import sleep
-
+########
+from source.gameplay.essentials.checkinputs import *
+from source.gameplay.essentials.menu import MainMenu
+########
+#pygame.init()
+########
 
 def draw_game(win, player, portals, background, components, base, dead):
 
@@ -27,11 +32,16 @@ def draw_game(win, player, portals, background, components, base, dead):
 
     if dead != 0:
         player.death_effect(win)
-
+        
     pygame.display.update()
 
 
 def main():
+    """ =-=-=-=-=-=-= Main Menu =-=-=-=-=-=-= """
+    ######
+    inputs = Inputs()
+    ######
+
     """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
     env = Environment()
 
@@ -49,8 +59,15 @@ def main():
 
     """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
-    while flag:
+    while flag & inputs.running:
+      inputs.curr_menu.display_menu()
+      while inputs.playing:
         timer.tick(60)
+        ######
+        inputs.check_events()
+        if inputs.START_KEY:
+            inputs.playing = False
+        ######
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 flag = False
@@ -59,6 +76,7 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     game_paused = not game_paused
+
 
         if not game_paused:
             # END OF LEVEL
@@ -159,6 +177,11 @@ def main():
                 if death_loop > 6:
                     # sleep(0.5)
                     main()
+
+#########
+        pygame.display.update()
+        inputs.reset_keys()
+#########
 
 
 if __name__ == '__main__':

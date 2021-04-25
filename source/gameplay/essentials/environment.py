@@ -28,8 +28,13 @@ class Environment:
         orb_portal = []
         dragon_portal = []
         cyclops_portal = []
+        #ENEAS Edit
+        choosemap = 1
+        #Enaes EDit
 
         # READING THE LEVEL SETUP IN A TXT FILE
+        #if(choosemap == 1):
+        #input_file = open(r"Map1.txt", "r")
         input_file = open(r"Map3.txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
