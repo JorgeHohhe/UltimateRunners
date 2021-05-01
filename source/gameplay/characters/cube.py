@@ -18,7 +18,9 @@ class Cube(Character):
             return True
         else:
             for block in blocks:
-                if self.y == block.y - self.height:
+                if self.grav > 0 and self.y == block.y - self.height:
+                    return True
+                elif self.grav < 0 and self.y == block.y + block.img.get_height():
                     return True
 
             return False
