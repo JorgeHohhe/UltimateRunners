@@ -6,8 +6,26 @@ from source.gameplay.essentials.environment import Environment
 import source.audio.audio_loader as al
 from time import sleep
 
+# SET PROGRESS BAR PARAMS
+    
+barPos      = (200, 50)
+barSize     = (600, 20)
+borderColor = (255, 255, 255)
+barColor    = (0, 128, 0)
 
-def draw_game(win, player, portals, background, components, base, dead):
+# COUNT DEATHS
+
+NUMBER_OF_DEATHS = [0]
+
+def draw_progress_bar(screen, pos, size, borderC, barC, progress):
+
+    pygame.draw.rect(screen, borderC, (*pos, *size), 1)
+    innerPos  = (pos[0]+3, pos[1]+3)
+    innerSize = ((size[0]-6) * progress, size[1]-6)
+    pygame.draw.rect(screen, barC, (*innerPos, *innerSize))
+
+
+def draw_game(win, player, portals, background, components, base, dead, progress, death_count, NUMBER_OF_DEATHS):
 
     background.draw(win)
 
@@ -27,14 +45,18 @@ def draw_game(win, player, portals, background, components, base, dead):
 
     if dead != 0:
         player.death_effect(win)
+        NUMBER_OF_DEATHS[0] += 1
+    draw_progress_bar(win, barPos, barSize, borderColor, barColor, progress)
 
+    win.blit(death_count,(20,50)) # (x, y)
     pygame.display.update()
 
 
+
 def main():
+    
     """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
     env = Environment()
-
     # SET WINDOW
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
@@ -46,9 +68,14 @@ def main():
     # LEVEL MUSIC
     level_selected = 3
     al.play_music_map(level_selected)
-
+    
+    # Font
+    pygame.font.init() # you have to call this at the start, 
+                       # if you want to use this module.
+    myfont = pygame.font.SysFont('Roboto', 35)
     """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
+
     while flag:
         timer.tick(60)
         for event in pygame.event.get():
@@ -145,14 +172,16 @@ def main():
                 env.components["blocks"].remove(r)
 
             # DRAW THE GAME WINDOW
-            draw_game(win, env.player, env.portals, env.background, env.components, env.base, death_loop)
+            progress = env.player.x/env.FIM
+            death_count = myfont.render('DEATHS : {0}'.format(int(NUMBER_OF_DEATHS[0]/7)), False, (255, 255, 255))
+            draw_game(win, env.player, env.portals, env.background, env.components, env.base, death_loop, progress, death_count, NUMBER_OF_DEATHS)
             flag = True
         else:
             if death_loop == 0:
                 al.pause_menu()
                 game_paused = not game_paused
             else:
-                draw_game(win, env.player, env.portals, env.background, env.components, env.base, death_loop)
+                draw_game(win, env.player, env.portals, env.background, env.components, env.base, death_loop, progress, death_count, NUMBER_OF_DEATHS)
                 if death_loop == 1:
                     al.death_sound()
                 death_loop += 1
