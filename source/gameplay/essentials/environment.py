@@ -18,7 +18,7 @@ from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_G
 
 class Environment:
     
-    def __init__(self):
+    def __init__(self, level_selected):
         """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
         # PREPARATION
         all_comp = []
@@ -28,14 +28,11 @@ class Environment:
         orb_portal = []
         dragon_portal = []
         cyclops_portal = []
-        #ENEAS Edit
-        choosemap = 1
-        #Enaes EDit
 
         # READING THE LEVEL SETUP IN A TXT FILE
         #if(choosemap == 1):
         #input_file = open(r"Map1.txt", "r")
-        input_file = open(r"Map3.txt", "r")
+        input_file = open(r"Map" + str(level_selected) +".txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
 

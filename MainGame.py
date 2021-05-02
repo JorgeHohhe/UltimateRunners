@@ -8,9 +8,6 @@ from time import sleep
 ########
 from source.gameplay.essentials.checkinputs import *
 from source.gameplay.essentials.menu import MainMenu
-########
-#pygame.init()
-########
 
 def draw_game(win, player, portals, background, components, base, dead):
 
@@ -43,7 +40,6 @@ def main():
     ######
 
     """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
-    env = Environment()
 
     # SET WINDOW
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
@@ -53,14 +49,18 @@ def main():
     death_loop = 0
     game_paused = False
 
-    # LEVEL MUSIC
-    level_selected = 3
+    # MENU MUSIC
+    level_selected = 4
     al.play_music_map(level_selected)
 
     """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
     while flag & inputs.running:
       inputs.curr_menu.display_menu()
+      level_selected = inputs.curr_menu.chooselvl
+      env = Environment(level_selected)
+      # LEVEL MUSIC
+      al.play_music_map(level_selected)
       while inputs.playing:
         timer.tick(60)
         ######

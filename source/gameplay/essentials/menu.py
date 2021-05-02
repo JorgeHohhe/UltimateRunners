@@ -18,6 +18,7 @@ class Menu():
         self.WHITE = (255,255,255)
         self.BLACK = (0,0,0)
         self.font_name = 'freesansbold.ttf'
+        self.chooselvl = 1
     
     def draw_text(self, text, size, x, y):
         font = pygame.font.Font(self.font_name,size)
@@ -103,7 +104,7 @@ class ChooseMapMenu(Menu):
         self.run_display = True
         while self.run_display:
             self.checkinputs.check_events()
-            self.check_input()
+            self.check_input2()
             self.window.blit(BG, (0,0))
             self.draw_text('Choose Level', 40, WIN_WIDTH/2, WIN_HEIGHT/2 - 20)
             self.draw_text("Level 1", 40, self.map1x, self.map1y)
@@ -114,7 +115,7 @@ class ChooseMapMenu(Menu):
             self.checkinputs.reset_keys()
             pygame.display.flip()
 
-    def check_input(self):
+    def move_cursor2(self):
         if self.checkinputs.BACK_KEY:
             self.checkinputs.curr_menu = self.checkinputs.main_menu
             self.run_display = False
@@ -138,6 +139,18 @@ class ChooseMapMenu(Menu):
             elif self.state == 'Level 2':
                 self.cursor_rect.midtop = (self.map1x + self.offset, self.map1y)
                 self.state = 'Level 1'
-        elif self.checkinputs.START_KEY:
-            #MUDA O MAPA E COMEÇA O JOGO
-            pass
+        
+    
+    def check_input2(self):
+        self.move_cursor2()
+        if self.checkinputs.START_KEY:
+            if self.state == 'Level 1':
+                self.checkinputs.playing = True
+            elif self.state == 'Level 2':
+                self.chooselvl = 2
+                self.checkinputs.playing = True
+            elif self.state == 'Level 3':
+                self.chooselvl = 3
+                self.checkinputs.playing = True
+            self.run_display = False
+    
