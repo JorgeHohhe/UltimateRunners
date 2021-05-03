@@ -199,3 +199,28 @@ class HelpMenu(Menu):
         if self.checkinputs.BACK_KEY:
             self.checkinputs.curr_menu = self.checkinputs.main_menu
             self.run_display = False
+
+class EndScreen(Menu):
+    def __init__(self, checkinputs):
+        Menu.__init__(self, checkinputs)
+        self.map1x, self.map1y = self.mid_width, self.mid_height
+        self.map2x, self.map2y = self.mid_width, self.mid_height + 50
+        self.map3x, self.map3y = self.mid_width, self.mid_height + 100
+
+    def check_input4(self):
+        if self.checkinputs.START_KEY:
+            self.checkinputs.curr_menu = self.checkinputs.main_menu
+            self.run_display = False
+    
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.checkinputs.check_events()
+            self.check_input4()
+            self.window.blit(BG, (0,0))
+            self.draw_text('Congratulations!!', 80, WIN_WIDTH/2, WIN_HEIGHT/2 - 200, self.YELLOW)
+            self.draw_text("Level completed", 40, self.map1x, self.map1y - 40, self.WHITE)
+            self.draw_text("Press ENTER to go back to main menu", 40, self.map2x, self.map2y, self.WHITE)
+            pygame.display.update()
+            self.checkinputs.reset_keys()
+            pygame.display.flip()
