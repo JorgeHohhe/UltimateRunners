@@ -5,7 +5,6 @@ from source.gameplay.components.platforms.block import *
 from source.gameplay.essentials.environment import Environment
 import source.audio.audio_loader as al
 from time import sleep
-########
 from source.gameplay.essentials.checkinputs import *
 from source.gameplay.essentials.menu import MainMenu
 
@@ -55,17 +54,18 @@ def main():
 
     """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
-    while flag & inputs.running:
+    while inputs.running:
       inputs.curr_menu.display_menu()
       level_selected = inputs.curr_menu.chooselvl
       env = Environment(level_selected)
       # LEVEL MUSIC
       al.play_music_map(level_selected)
-      while inputs.playing:
+      while flag & inputs.playing:
+        #env = Environment(level_selected)
         timer.tick(60)
         ######
         inputs.check_events()
-        if inputs.START_KEY:
+        if inputs.ESCAPE:
             inputs.playing = False
         ######
         for event in pygame.event.get():
@@ -81,6 +81,8 @@ def main():
         if not game_paused:
             # END OF LEVEL
             if env.FIM < env.player.x:
+                inputs.curr_menu = inputs.endscreen
+                inputs.curr_menu.display_menu()
                 main()
                 # do something
 
@@ -182,6 +184,7 @@ def main():
         pygame.display.update()
         inputs.reset_keys()
 #########
+      
 
 
 if __name__ == '__main__':
