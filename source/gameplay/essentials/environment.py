@@ -30,8 +30,6 @@ class Environment:
         cyclops_portal = []
 
         # READING THE LEVEL SETUP IN A TXT FILE
-        #if(choosemap == 1):
-        #input_file = open(r"Map1.txt", "r")
         input_file = open(r"Map" + str(level_selected) +".txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
