@@ -9,6 +9,7 @@ class Inputs():
         self.main_menu = MainMenu(self)
         self.choose_map = ChooseMapMenu(self)
         self.helpmenu = HelpMenu(self)
+        self.endscreen = EndScreen(self)
         self.curr_menu = self.main_menu
 
     def check_events(self):
