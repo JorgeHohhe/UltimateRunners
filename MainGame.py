@@ -156,8 +156,8 @@ def main():
                     # SPIKE COLLISION TEST
                     if spike.collision(env.player):
                         # restart the game
-                        death_loop += 1
-                        game_paused = True
+                        #death_loop += 1
+                        #game_paused = True
                         pass
 
                     if spike.x + spike.img.get_width() < 0:
@@ -172,8 +172,8 @@ def main():
                     block.interaction(env.player)
                     if block.collision(env.player):
                         # restart the game
-                        death_loop += 1
-                        game_paused = True
+                        #death_loop += 1
+                        #game_paused = True
                         pass
 
                     if block.x + block.img.get_width() < 0:
