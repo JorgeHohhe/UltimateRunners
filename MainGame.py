@@ -172,7 +172,7 @@ def main():
                 env.components["blocks"].remove(r)
 
             # DRAW THE GAME WINDOW
-            progress = env.player.x/env.FIM
+            progress =  1-env.FIM/env.MAP_LENGTH
             death_count = myfont.render('DEATHS : {0}'.format(int(NUMBER_OF_DEATHS[0]/7)), False, (255, 255, 255))
             draw_game(win, env.player, env.portals, env.background, env.components, env.base, death_loop, progress, death_count, NUMBER_OF_DEATHS)
             flag = True
