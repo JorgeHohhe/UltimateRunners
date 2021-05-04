@@ -93,7 +93,7 @@ class MobileBlock(Block):
         return False
 
 class MobilePortal(Block):
-    def __init__(self, x, y, angle, pixels_x, pixels_y, y_velocity = 0):
+    def __init__(self, x, y, angle, pixels_x, pixels_y, y_velocity = 5):
         super().__init__(x, y, angle, pixels_x, pixels_y)
         self.y_velocity = y_velocity
         self.pixels_y = pixels_y
@@ -128,16 +128,24 @@ class MobilePortal(Block):
 
     def collision(self, player):
         player_mask = player.get_mask()
-        lower_mask = pygame.mask.from_surface(self.lower_img)
-        lower_offset = (round(self.x - player.x), round(self.y - player.y))
-        lower_point = player_mask.overlap(lower_mask, lower_offset)
+        block_mask = pygame.mask.from_surface(self.img)
+        offset = (round(self.x - player.x), abs(round(self.y - player.y)) - int(self.pixels_y/2))
+        point = player_mask.overlap(block_mask, offset)
 
-
-        upper_mask = pygame.mask.from_surface(self.upper_img)
-        upper_offset = (round(self.x - player.x), round(self.y - player.y))
-        upper_point = player_mask.overlap(upper_mask, upper_offset)
-        
-        if lower_point or upper_point:
+        if not point and abs(round(self.x - player.x)) < self.pixels_x/2:
+            player.vel = 0
+            if player.gamemode == 'laser':
+                player.rot = -90
+                if player.y < self.y:
+                    player.y = self.y - player.height * 3 / 4
+                else:
+                    player.y = self.y + self.img.get_height() * 3 / 4
+            else:
+                if player.y < self.y:
+                    player.y = self.y - player.height
+                else:
+                    player.y = self.y + self.img.get_height()
+                    if player.gamemode == "cyclops":
+                        player.y -= 8
             return True
-
         return False
