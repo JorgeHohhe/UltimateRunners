@@ -2,6 +2,8 @@ import pygame
 from source.graphics.misc.font import *
 from source.gameplay.utils.constants import *
 from source.gameplay.components.platforms.block import *
+from source.gameplay.essentials.checkinputs import *
+from source.gameplay.essentials.menu import MainMenu
 from source.gameplay.essentials.environment import Environment
 import source.audio.audio_loader as al
 from time import sleep
@@ -12,7 +14,6 @@ barPos      = (200, 50)
 barSize     = (600, 20)
 borderColor = (255, 255, 255)
 barColor    = (0, 128, 0)
-
 # COUNT DEATHS
 
 NUMBER_OF_DEATHS = [0]
@@ -54,9 +55,13 @@ def draw_game(win, player, portals, background, components, base, dead, progress
 
 
 def main():
-    
+    """ =-=-=-=-=-=-= Main Menu =-=-=-=-=-=-= """
+    ######
+    inputs = Inputs()
+    ######
+
     """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
-    env = Environment()
+
     # SET WINDOW
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
@@ -65,8 +70,8 @@ def main():
     death_loop = 0
     game_paused = False
 
-    # LEVEL MUSIC
-    level_selected = 3
+    # MENU MUSIC
+    level_selected = 4
     al.play_music_map(level_selected)
     
     # Font
@@ -75,9 +80,20 @@ def main():
     myfont = pygame.font.SysFont('Roboto', 35)
     """ =-=-=-=-=-=-= GAME START =-=-=-=-=-=-= """
     flag = True
-
-    while flag:
+    while inputs.running:
+      inputs.curr_menu.display_menu()
+      level_selected = inputs.curr_menu.chooselvl
+      env = Environment(level_selected)
+      # LEVEL MUSIC
+      al.play_music_map(level_selected)
+      while flag & inputs.playing:
+        #env = Environment(level_selected)
         timer.tick(60)
+        ######
+        inputs.check_events()
+        if inputs.ESCAPE:
+            inputs.playing = False
+        ######
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 flag = False
@@ -87,9 +103,12 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     game_paused = not game_paused
 
+
         if not game_paused:
             # END OF LEVEL
             if env.FIM < env.player.x:
+                inputs.curr_menu = inputs.endscreen
+                inputs.curr_menu.display_menu()
                 main()
                 # do something
 
@@ -188,6 +207,12 @@ def main():
                 if death_loop > 6:
                     # sleep(0.5)
                     main()
+
+#########
+        pygame.display.update()
+        inputs.reset_keys()
+#########
+      
 
 
 if __name__ == '__main__':
