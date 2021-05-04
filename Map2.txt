@@ -98,7 +98,16 @@ yellowglobe 14700 100
 yellowglobe 14850 200
 yellowglobe 15000 320
 block 15100 0 200 350
-end 15300
+block 15100 0 200 350
+block 15100 0 200 350
+dragonportal 15600 0
+mobile_block 16000 0 100 100
+mobile_block 16500 0 100 100
+mobile_block 17000 0 100 100
+mobile_portal 18000 0 100 200
+mobile_portal 19000 0 100 200
+mobile_portal 20000 0 100 200
+end 20300
 
 # Macaco Map Setup
 1º gamemode
