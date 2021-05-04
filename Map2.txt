@@ -95,7 +95,7 @@ block 14050 200 200 200
 cubeportal 14250 370
 yellowglobe 14400 300
 yellowglobe 14700 100
-yellowglobe 14850 200
+yellowglobe 14850 250
 yellowglobe 15000 320
 block 15100 0 200 350
 block 15100 0 200 350
