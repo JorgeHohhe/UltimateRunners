@@ -6,6 +6,16 @@ Python 3.9.1
 
 Pygame 2.0.1
 
+# Instruções de Instalação 
+
+```
+git clone https://github.com/JorgeHohhe/UltimateRunners.git
+cd UltimateRunners
+pip install -r requirements.txt
+python3 MainGame.py
+```
+
+
 # Progresso
 
 ### Personagens
@@ -32,23 +42,23 @@ Pygame 2.0.1
 
 ✅ Lava
 
-☐ Obstáculos Móveis
+✅  Obstáculos Móveis
 
 ✅ Globo Amarelo
 
-☐ Globo de Gravidade
+✅  Globo de Gravidade
 
 ### Outros
 
-☑ Música de Fundo (melhorar Menu)
+✅ Música de Fundo (melhorar Menu)
 
 ✅ Efeito e Som ao perder
 
-☐ Efeito de Fim do Nível
+✅ Efeito de Fim do Nível
 
-☐ Menu do Jogo
+✅ Menu do Jogo
 
-☐ Níveis (Mapa em si)
+✅ Níveis (Mapa em si)
 
 ### Legenda
 
@@ -70,22 +80,20 @@ Pygame 2.0.1
   
   • Lucas Inamine de Angelo
 
+
 # Git Workflow
 
   Para começar:
   
-  ´´´
-  
+``` 
   git pull
   
   git checkout -b my_new_branch
-
-  ´´´
+``` 
 
 No dia-a-dia:
 
-´´´
-
+```
 git status
 
 git add file_name
@@ -93,3 +101,4 @@ git add file_name
 git commit -m 'some message'
 
 git push origin my_new_branch
+```
