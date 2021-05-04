@@ -31,7 +31,7 @@ class Environment:
         cyclops_portal = []
 
         # READING THE LEVEL SETUP IN A TXT FILE
-        input_file = open(r"Map" + str(level_selected) +".txt", "r")
+        input_file = open(r"source/gameplay/essentials/maps/Map" + str(level_selected) +".txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
 
