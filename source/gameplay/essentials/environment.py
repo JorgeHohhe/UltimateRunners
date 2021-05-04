@@ -19,7 +19,7 @@ from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_G
 
 class Environment:
     
-    def __init__(self):
+    def __init__(self, level_selected):
         """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
         # PREPARATION
         all_comp = []
@@ -31,7 +31,7 @@ class Environment:
         cyclops_portal = []
 
         # READING THE LEVEL SETUP IN A TXT FILE
-        input_file = open(r"Map3.txt", "r")
+        input_file = open(r"Map" + str(level_selected) +".txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
 
@@ -84,6 +84,7 @@ class Environment:
             f = input_file.readline().split()
 
         self.FIM = int(f[1])
+        self.MAP_LENGTH = int(f[1])
         input_file.close()
 
         '''self.base = Base(WIN_HEIGHT - BASE.get_height())
