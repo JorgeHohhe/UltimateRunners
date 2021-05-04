@@ -93,7 +93,7 @@ class MobileBlock(Block):
         return False
 
 class MobilePortal(Block):
-    def __init__(self, x, y, angle, pixels_x, pixels_y, y_velocity = 5):
+    def __init__(self, x, y, angle, pixels_x, pixels_y, y_velocity = 3):
         super().__init__(x, y, angle, pixels_x, pixels_y)
         self.y_velocity = y_velocity
         self.pixels_y = pixels_y
