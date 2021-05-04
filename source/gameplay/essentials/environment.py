@@ -2,7 +2,7 @@ from ..components.transporters.springs.gravity_spring import GravSpring
 from ..components.transporters.springs.yellow_spring import YellowSpring
 from ..components.transporters.globes.yellow_globe import YellowGlobe
 from ..components.transporters.globes.gravity_globe import GravityGlobe
-from ..components.platforms.block import Block, MobileBlock
+from ..components.platforms.block import Block, MobileBlock, MobilePortal
 from ..components.hazards.spike import Spike
 from ..components.hazards.lava import Lava
 from ..components.portals.portal import Portal
@@ -46,6 +46,9 @@ class Environment:
             elif f[0] == "mobile_block":
                 f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
                 self.blocks.append(MobileBlock(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
+            elif f[0] == "mobile_portal":
+                f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
+                self.blocks.append(MobilePortal(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
             elif f[0] == "yellowspring":
                 f[2] = WIN_HEIGHT - BASE.get_height() - YELLOW_SPRING.get_height() - int(f[2])
                 all_comp.append(YellowSpring(int(f[1]), f[2], int(f[3])))
