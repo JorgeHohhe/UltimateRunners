@@ -193,6 +193,11 @@ dragonportal 44250 0
 block 44250 160 75 440 0
 block 48000 0 75 200 0
 block 48000 360 75 280 0
+mobile_block 45000 0 100 100
+mobile_block 45500 0 100 100
+mobile_block 46000 0 100 100
+mobile_portal 46500 0 100 200
+mobile_portal 47000 0 100 200
 cubeportal 48000 200
 spike 48500 0 75 75 0
 yellowspring 48590 0 0
@@ -214,7 +219,7 @@ spike 50525 0 75 75 0
 yellowglobe 50420 75
 yellowglobe 50480 75
 yellowglobe 50540 75
-end 55000
+end 54000
 
 -=-=-=-=-=-=-
 
