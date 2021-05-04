@@ -2,7 +2,7 @@ from ..components.transporters.springs.gravity_spring import GravSpring
 from ..components.transporters.springs.yellow_spring import YellowSpring
 from ..components.transporters.globes.yellow_globe import YellowGlobe
 from ..components.transporters.globes.gravity_globe import GravityGlobe
-from ..components.platforms.block import Block
+from ..components.platforms.block import Block, MobileBlock
 from ..components.hazards.spike import Spike
 from ..components.hazards.lava import Lava
 from ..components.portals.portal import Portal
@@ -19,7 +19,7 @@ from ...graphics.images_loader import BASE, GRAV_SPRING, YELLOW_SPRING, YELLOW_G
 
 class Environment:
     
-    def __init__(self):
+    def __init__(self, level_selected):
         """ =-=-=-=-=-=-= MAP SETUP =-=-=-=-=-=-= """
         # PREPARATION
         all_comp = []
@@ -31,7 +31,7 @@ class Environment:
         cyclops_portal = []
 
         # READING THE LEVEL SETUP IN A TXT FILE
-        input_file = open(r"Map3.txt", "r")
+        input_file = open(r"Map" + str(level_selected) +".txt", "r")
         f = input_file.readline().split()
         gamemode = f[0]
 
@@ -43,6 +43,9 @@ class Environment:
             elif f[0] == "block":
                 f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
                 self.blocks.append(Block(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
+            elif f[0] == "mobile_block":
+                f[2] = WIN_HEIGHT - BASE.get_height() - int(f[4]) - int(f[2])
+                self.blocks.append(MobileBlock(int(f[1]), f[2], 0, int(f[3]), int(f[4])))
             elif f[0] == "yellowspring":
                 f[2] = WIN_HEIGHT - BASE.get_height() - YELLOW_SPRING.get_height() - int(f[2])
                 all_comp.append(YellowSpring(int(f[1]), f[2], int(f[3])))
@@ -78,6 +81,7 @@ class Environment:
             f = input_file.readline().split()
 
         self.FIM = int(f[1])
+        self.MAP_LENGTH = int(f[1])
         input_file.close()
 
         '''self.base = Base(WIN_HEIGHT - BASE.get_height())
