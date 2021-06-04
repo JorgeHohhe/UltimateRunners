@@ -102,3 +102,7 @@ git commit -m 'some message'
 
 git push origin my_new_branch
 ```
+
+# Vídeo de Apresentação do Game
+
+Youtube: https://www.youtube.com/watch?v=fc6HshYhLq8
